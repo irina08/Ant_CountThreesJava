@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="CountThreesJava" default="runCount3s" basedir=".">
+<project name="CountThreesJava" default="clean" basedir=".">
 	
     <target name="Count3s"
         description="Build the Count3s class from source">
@@ -14,7 +14,7 @@
         </classpath>
         </java>
     </target>
-	<target name="clean" 
+	<target name="clean" depends="runCount3s"
 			description="remove intermediate files">
 		<echo>Doing Clean up</echo>
 	        <delete file="CountThrees.class"/>
