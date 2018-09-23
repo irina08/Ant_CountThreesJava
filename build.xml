@@ -10,7 +10,7 @@
 <copy file="threesData.bin" todir="${build}" />
 	</target>
 
-    <target name="Count3s"
+    <target name="Count3s" depends="init"
         description="Build the Count3s class from source">
         <echo>Compile source files: CountThrees.java and ReadInt32BitLE.java</echo>
         <javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
@@ -28,5 +28,7 @@
 		<echo>Doing Clean up</echo>
 	        <delete file="CountThrees.class"/>
 			<delete file="ReadInt32BitLE.class"/>
-	</target>
+	 	<delete dir="${src}"/>
+		<delete dir="${build}"/>
+</target>
 </project>
