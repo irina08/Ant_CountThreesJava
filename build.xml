@@ -1,16 +1,25 @@
 <?xml version="1.0"?>
 <project name="CountThreesJava" default="clean" basedir=".">
-	
+<property name="src" value="src"/>
+<property name="build" value="build"/>	
+<target name="init" description="setup and populate project directories">
+		<mkdir dir="${src}"/>
+<copy file="CountThrees.java" todir="${src}" />
+<copy file="ReadInt32BitLE.java" todir="${src}" />
+        <mkdir dir="${build}"/>
+<copy file="threesData.bin" todir="${build}" />
+	</target>
+
     <target name="Count3s"
         description="Build the Count3s class from source">
         <echo>Compile source files: CountThrees.java and ReadInt32BitLE.java</echo>
-        <javac includeantruntime="false" srcdir="." destdir="."/>
+        <javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
     </target>    
 	<target name="runCount3s" depends="Count3s"
             description="run the count3s application">
         <echo>Run</echo>
         <java classname="CountThrees">
-        <classpath path=".">
+        <classpath path="./{$build}">
         </classpath>
         </java>
     </target>
