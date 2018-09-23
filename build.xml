@@ -1,30 +1,16 @@
 <?xml version="1.0"?>
 <project name="CountThreesJava" default="clean" basedir=".">
-<property name="src" value="src"/>
-<property name="build" value="build"/>	
-<target name="init" description="setup and populate project directories">
-<echo>mkdir src </echo>
-		<mkdir dir="${src}"/>
-<echo>copy Vount </echo>
-<copy file="CountThrees.java" todir="${src}" />
-<echo>copy Read </echo>
-<copy file="ReadInt32BitLE.java" todir="${src}" />
-<echo>mkdir build </echo>        
-<mkdir dir="${build}"/>
-<echo>copy bin </echo>
-<copy file="threesData.bin" todir="${build}" />
-	</target>
-
-    <target name="Count3s" depends="init"
+	
+    <target name="Count3s"
         description="Build the Count3s class from source">
         <echo>Compile source files: CountThrees.java and ReadInt32BitLE.java</echo>
-        <javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
+        <javac includeantruntime="false" srcdir="." destdir="."/>
     </target>    
 	<target name="runCount3s" depends="Count3s"
             description="run the count3s application">
         <echo>Run</echo>
         <java classname="CountThrees">
-        <classpath path="./{$build}">
+        <classpath path=".">
         </classpath>
         </java>
     </target>
@@ -33,7 +19,5 @@
 		<echo>Doing Clean up</echo>
 	        <delete file="CountThrees.class"/>
 			<delete file="ReadInt32BitLE.class"/>
-	 	<delete dir="${src}"/>
-		<delete dir="${build}"/>
-</target>
+	</target>
 </project>
